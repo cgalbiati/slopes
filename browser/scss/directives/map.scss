@@ -1,0 +1,40 @@
+.angular-google-map-container { 
+  height: 400px; 
+}
+
+
+// $screen-sm: 768px;
+#map-canvas {
+  &:before {
+      content: "";
+      display: block;
+      clear: both;
+  }
+  &:after {
+      content: "";
+      display: block;
+      clear: both;
+  }
+  width: 500px;
+  height: 500px;
+
+  // height: calc(100vh - 50px);
+  // border-right: 2px solid lighten($medium-brown, 25%);
+  // border-bottom: 2px solid lighten($medium-brown, 25%);
+  // border-left: 2px solid lighten($medium-brown, 25%);
+  // width:100%;
+}
+
+// @media (min-width: $screen-sm) {
+//   #map-canvas {
+//     border-bottom: none;
+//     border-left: none;
+//   }
+//   .map-container {
+//     padding: 0;
+//     > div {
+//       position: fixed;
+//       width: inherit;
+//     }
+//   }
+// }

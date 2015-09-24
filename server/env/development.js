@@ -15,5 +15,8 @@ module.exports = {
     "clientID": "INSERT_GOOGLE_CLIENTID_HERE",
     "clientSecret": "INSERT_GOOGLE_CLIENT_SECRET_HERE",
     "callbackURL": "INSERT_GOOGLE_CALLBACK_HERE"
-  }
+  },
+    "GOOGLEMAPS": {
+    "browserKey": "AIzaSyCbHUMkr3q_Rgiul7xSafALcQA7MDr-bLY",
+  },
 };
