@@ -3,29 +3,43 @@ app.controller('MainCtrl', function ($scope, uiGmapGoogleMapApi){
 	var gpsStart = {latitude: 39.88, longitude: -105.78}
 	// $scope.map = { center: { latitude: 25, longitude: -77 }, zoom: 8 };
 	var myOptions = {
-	  zoom : 12,
+	  zoom : 11,
 	  center : gpsStart,
 	  panControl: true,
 	  // mapTypeId : google.maps.MapTypeId.HYBRID,
+	  // options: {
+   //          mapTypeId: maps.MapTypeId.TERRAIN
+   //      },
 	  styles: styleArr
 	};
-	$scope.map = myOptions;
+	// $scope.map = myOptions;
 		// scope.map.center = userLatLng;
 	// var userLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 	console.log('before')
 
 	uiGmapGoogleMapApi.then(function(maps) {
-		var userLatLng = new maps.LatLng(25, -77);
-		console.log('user', userLatLng)
-		console.log('then');
-		console.log(maps)
-		console.log(maps.Map.prototype.setMapTypeId.toString())
-
-		$scope.map.zoom = 3;
+		// var userLatLng = new maps.LatLng(position.coords.latitude, position.coords.longitude);
+		// var userLatLngCenterObj = {latitude: userLatLng.A, longitude: userLatLng.F};
+		console.log('mapsObj', maps)
+		// console.log(maps.Map.prototype.setMapTypeId.toString())
+		// $scope.map.zoom = 7;
+		$scope.map = {
+	  zoom : 10,
+	  center : gpsStart,
+	  panControl: true,
+	  mapTypeId : maps.MapTypeId.SATELLITE,
+	  // styles: styleArr
+	};
 		console.log($scope.map)
-		$scope.map.setMapTypeId(maps.MapTypeId.HYBRID);
+		// $scope.map.setMapTypeId(maps.MapTypeId.HYBRID);
 
-
+// $scope.map = {
+// 	  zoom : 7,
+// 	  center : {latitude: 29.88, longitude: -105.78},
+// 	  panControl: true,
+// 	  mapTypeId : maps.MapTypeId.SATELLITE,
+// 	  styles: styleArr
+// 	};
     });
 
 
