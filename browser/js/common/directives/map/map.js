@@ -1,13 +1,21 @@
 'use strict';
 
-app.directive('mapType', function () {
+app.directive('googleMaps', function () {
 	return {
-		restrict: 'A',
-		// templateUrl: 'js/common/directives/map/map.html',
-		link: function (scope, element, attribute) {
+		restrict: 'E',
+		templateUrl: 'js/common/directives/map/map.html',
+	};
+});
 
-		}
 
+
+// app.directive('mapType', function () {
+// 	return {
+// 		restrict: 'A',
+// 		// templateUrl: 'js/common/directives/map/map.html',
+// 		link: function (scope, element, attribute) {
+
+// 		}
       
 // var map;
 
@@ -227,7 +235,7 @@ app.directive('mapType', function () {
 // 		// 	}];
 // 		}
 		
-	};
-});
+// 	};
+// });
 
 

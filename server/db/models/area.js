@@ -7,13 +7,14 @@ var schema = new mongoose.Schema({
     name: {
         type: String
     },
-    type: {
-        type: String
-    },
+    activities: [{
+        type: ObjectId,
+        ref: 'activity'
+    }],
     location: {
         type: ObjectId,
         ref: 'location'
     },
-})
+});
 
-mongoose.model('LocArea', schema);
+mongoose.model('Area', schema);

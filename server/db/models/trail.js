@@ -14,15 +14,15 @@ var schema = new mongoose.Schema({
 		type: ObjectId, 
 		ref:"User",
 	},
-	type: [{
+	activities: [{
 		type: ObjectId, 
 		ref:"Activity",
 	}],
-	locArea: {
+	area: {
 		type: ObjectId, 
-		ref:"LocArea",
+		ref:"Area",
 	},
-	
+
 });
 
 // var SkiTrailSchema = schema.extend({
