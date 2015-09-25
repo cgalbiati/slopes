@@ -6,13 +6,16 @@ app.controller('MainCtrl', function ($scope, uiGmapGoogleMapApi){
 	  zoom : 11,
 	  center : gpsStart,
 	  panControl: true,
+	  options: {styles:'SATELITE'}
+
 	  // mapTypeId : google.maps.MapTypeId.HYBRID,
 	  // options: {
    //          mapTypeId: maps.MapTypeId.TERRAIN
    //      },
-	  styles: styleArr
+	  // styles: styleArr
 	};
-	// $scope.map = myOptions;
+
+	$scope.map = myOptions;
 		// scope.map.center = userLatLng;
 	// var userLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 	console.log('before')
@@ -23,15 +26,67 @@ app.controller('MainCtrl', function ($scope, uiGmapGoogleMapApi){
 		console.log('mapsObj', maps)
 		// console.log(maps.Map.prototype.setMapTypeId.toString())
 		// $scope.map.zoom = 7;
-		$scope.map = {
-	  zoom : 10,
-	  center : gpsStart,
-	  panControl: true,
-	  mapTypeId : maps.MapTypeId.SATELLITE,
+		// $scope.map = {
+	 //  zoom : 10,
+	 //  center : gpsStart,
+	 //  panControl: true,
+	  // mapTypeId : maps.MapTypeId.SATELLITE,
 	  // styles: styleArr
-	};
-		console.log($scope.map)
-		// $scope.map.setMapTypeId(maps.MapTypeId.HYBRID);
+	// };
+	var map_canvas_obj = document.getElementById("map");
+	var userLatLng = new maps.LatLng(25,75);
+	console.log('user', userLatLng.lat())
+	var userLatLngCenterObj = {latitude: userLatLng.A, longitude: userLatLng.F};
+
+	// console.log(maps.Map.prototype.setCenter)
+	// var mapOpt = {
+	//   zoom : 10,
+	//   center : userLatLngCenterObj,
+	//   panControl: true,
+	//   options: {mapTypeId: google.maps.MapTypeId.SATELLITE },
+	//   // styles: styleArr
+	// };
+
+	// $scope.map = new maps.Map(map_canvas_obj, {centerProperty: userLatLng, zoom: 8 });
+	// console.log('$scope.map', $scope.map)
+	// var marker = new maps.Marker({
+ //          map : $scope.map,
+ //          position : userLatLng,
+ //        });
+
+		// $scope.map.setMapTypeId(maps.MapTypeId.SATELLITE);
+		// console.log($scope.map.getCenter())
+
+	     $scope.markers = [];
+
+	     // $scope.map.setMapTypeId(maps.MapTypeId.TERRAIN)
+
+	     console.log($scope.map)
+
+      var infoWindow = new maps.InfoWindow();
+
+      $scope.addMarker = function(lat, lng, title) {
+
+        var latLang = new maps.LatLng(lat, lng);
+
+        var marker = new maps.Marker({
+          map : $scope.map,
+          position : latLang,
+          title : title
+        });
+        marker.content = '<div class="infoWindowContent">'
+            + marker.title + '</div>';
+
+        google.maps.event.addListener(marker, 'click', function() {
+          infoWindow.setContent('<h2>' + marker.title + '</h2>'
+              + marker.content);
+          infoWindow.open($scope.map, marker);
+        });
+
+        $scope.markers.push(marker);
+
+        $scope.map.setCenter(latLang);
+      };
 
 // $scope.map = {
 // 	  zoom : 7,
@@ -40,21 +95,21 @@ app.controller('MainCtrl', function ($scope, uiGmapGoogleMapApi){
 // 	  mapTypeId : maps.MapTypeId.SATELLITE,
 // 	  styles: styleArr
 // 	};
-    });
+	});
 
 
 
 
 
-	$scope.$on('mapInitialized', function(event, map) {
-		var userLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-		console.log('after', userLatLng)
-		map.center = userLatLng;
-      	// var myLatlng = new google.maps.LatLng(40.705189,-74.009209)
+	// $scope.$on('mapInitialized', function(event, map) {
+	// 	var userLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+	// 	console.log('after', userLatLng)
+	// 	map.center = userLatLng;
+ //      	// var myLatlng = new google.maps.LatLng(40.705189,-74.009209)
 
-      	// map.setCenter(myLatlng)
+ //      	// map.setCenter(myLatlng)
       
-    });
+ //    });
 
 	var styleArr = [{
 	  featureType: "landscape",
