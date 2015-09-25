@@ -1,11 +1,19 @@
 
     <input ng-model= 'searchLoc'>search</input>
     <div class='angular-google-map-container'>
-        <ui-gmap-google-map id='map' center='map.center' zoom='map.zoom' options="map.options"></ui-gmap-google-map>
+        <ui-gmap-google-map id='map' center='map.center' zoom='map.zoom' options="map.options">
+
+        <ui-gmap-marker
+        idKey='marker.id'
+        coords='marker.coords'
+        >
+</ui-gmap-marker>
+          <!-- <ui-gmap-drawing-manager options="drawingManagerOptions" control="drawingManagerControl"></ui-gmap-drawing-manager> -->
+        </ui-gmap-google-map>
     </div>
     <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbHUMkr3q_Rgiul7xSafALcQA7MDr-bLY&callback=initMap">
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbHUMkr3q_Rgiul7xSafALcQA7MDr-bLY&callback=initMap"></script>
+      <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?AIzaSyCbHUMkr3q_Rgiul7xSafALcQA7MDr-bLY&libraries=drawing">
-
     </script>
     <h1> 
