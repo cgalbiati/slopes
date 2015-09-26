@@ -1,4 +1,5 @@
 <section id="home">
+    <button ng-repeat='skiArea in skiAreas' ng-click='move(skiArea)'> change to {{skiArea.name}}</button>
     <fullstack-logo></fullstack-logo>
     <rando-greeting></rando-greeting>
 </section>

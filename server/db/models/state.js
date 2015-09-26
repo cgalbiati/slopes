@@ -5,7 +5,7 @@ var schema = new mongoose.Schema({
     name: {
         type: String
     },
-    abrev: {
+    abrv: {
         type: String
     },
 });

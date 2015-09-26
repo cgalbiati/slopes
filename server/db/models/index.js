@@ -5,7 +5,7 @@ require('./state');
 require('./country');
 require('./location');
 require('./activity');
-require('./loc-area');
+require('./area');
 require('./trail');
 require('./user');
 
