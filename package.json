@@ -6,6 +6,7 @@
   "scripts": {
     "start": "nodemon --watch server -e js,html server/start.js",
     "postinstall": "gulp build"
+    "setup": "node seed"
   },
   "dependencies": {
     "angular": "^1.4.0",
