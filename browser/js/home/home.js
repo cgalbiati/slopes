@@ -5,7 +5,11 @@ app.config(function ($stateProvider) {
         controller: "MainCtrl",
         resolve: {
         	skiAreas: function (AreaFactory){
-        		return AreaFactory.findAll();
+                console.log('looking for ski areas')
+        		return AreaFactory.findAll().then(function(areas){
+                    console.log(areas);
+                    return areas;
+                });
         	}
         }
     });
