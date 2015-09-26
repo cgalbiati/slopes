@@ -11,10 +11,12 @@ var schema = new mongoose.Schema({
         type: ObjectId,
         ref: 'activity'
     }],
-    location: {
-        type: ObjectId,
-        ref: 'location'
-    },
+    lat: {type: String},
+    lng: {type: String},
+    // location: {
+    //     type: ObjectId,
+    //     ref: 'location'
+    // },
 });
 
 mongoose.model('Area', schema);

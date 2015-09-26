@@ -1,17 +1,11 @@
 'use strict';
 
-window.app = angular.module('FullstackGeneratedApp', ['ui.router', 'ui.bootstrap', 'fsaPreBuilt', 'js-data', 'uiGmapgoogle-maps']);
+window.app = angular.module('FullstackGeneratedApp', ['ui.router', 'ui.bootstrap', 'fsaPreBuilt', 'js-data']);
 
-app.config(function(DSProvider, $urlRouterProvider, $locationProvider, uiGmapGoogleMapApiProvider) {
+app.config(function(DSProvider, $urlRouterProvider, $locationProvider) {
 
     $locationProvider.html5Mode(true);
     //$urlRouterProvider.otherwise('/');
-
-    uiGmapGoogleMapApiProvider.configure({
-        key: 'AIzaSyCbHUMkr3q_Rgiul7xSafALcQA7MDr-bLY',
-        v: '3.20', //defaults to latest 3.X anyhow
-        libraries: 'weather,geometry,visualization'
-    });
 
 
     DSProvider.defaults.basePath = '/api';

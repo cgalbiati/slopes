@@ -325,7 +325,32 @@ var seedArea = function() {
         {    
             name: 'Winter Park',
             activity: 'Ski',
-            location: 'ss',
+            lat: '39.88', 
+            lng: '-105.78' 
+        },
+        {    
+            name: 'Eldora',
+            activity: 'Ski',
+            lat: '39.94', 
+            lng: '-105.59' 
+        },
+        {    
+            name: 'Aspen Mountain',
+            activity: 'Ski',
+            lat: '39.17', 
+            lng: '-106.82' 
+        },
+        {    
+            name: 'Crested Butte',
+            activity: 'Ski',
+            lat: '38.89', 
+            lng: '-106.97' 
+        },
+        {    
+            name: 'Silverton',
+            activity: 'Ski',
+            lat: ' 37.89', 
+            lng: '-107.67' 
         },
     ];
     return Area.createAsync(areas);
@@ -354,7 +379,7 @@ connectToDb.then(function () {
         return seedActivity();
     }).then(function(activities) {
         tempData.activities = activities;
-        // return seedLocation(tempData.states);
+        return seedArea();
     })
 
     .then(function () {
