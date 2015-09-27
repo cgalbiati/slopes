@@ -142,7 +142,7 @@ app.config(function(DSProvider, $urlRouterProvider, $locationProvider) {
       $rootScope.showVars = {
         trailForm: false,
         graph: false,
-
+        trailList: false,
       };
       $rootScope.mapData = {
         points: [],

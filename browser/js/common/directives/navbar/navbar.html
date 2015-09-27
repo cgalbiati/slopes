@@ -1,24 +1,19 @@
 <nav class="navbar navbar-static-top">
     <div class="container">
         <div class="navbar-header">
-            <fullstack-logo></fullstack-logo>
+            <mtn-logo class='logo'></mtn-logo>
         </div>
         <ul class="nav navbar-nav">
-            <!-- <li input type='text' placeholder='Find a ski area' ng-model='selectedArea' 
-                typeahead="a as a.name for a in skiAreas | filter:$viewValue | limitTo:10"
-                typeahead-min-length='1'
-                typeahead-on-select='onSelectPart($item, $model, $label)'
-                typeahead-template-url="customTemplate.html" style="width:350px;">
-            </li> -->
+            <li input type='text' placeholder='Find a ski area' ng-model='selectedArea' 
+                >hi
+            </li>
             <li><a ng-click='addTrail()'>Add a trail</a></li>
+            <li><a ng-click='addTrail()'>{{areas[0]}}</a></li>
+
             <!-- <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
             </li> -->
         </ul>
-        <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
-        <div ng-show="user" class="welcome">
-            <span>Welcome, {{ user.email }}!</span>
-            <a ng-click="logout()">Logout</a>
-        </div>
+        
     </div>
 </nav>

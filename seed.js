@@ -352,6 +352,12 @@ var seedArea = function() {
             lat: ' 37.89', 
             lng: '-107.67' 
         },
+        {
+            name: 'Killington',
+            activity: 'Ski',
+            lat: '43.63', 
+            lng: '-72.82' 
+        },
     ];
     return Area.createAsync(areas);
 

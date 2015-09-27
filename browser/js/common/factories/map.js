@@ -4,7 +4,8 @@ app.factory('MapFactory', function () {
     // var drawingManager;
     var poly; //in prog line
     var points = []; // in prog latLng Arr
-
+    var areas = [];
+    var trails = [];
 
 
     function initMap(opt) {
@@ -72,7 +73,7 @@ app.factory('MapFactory', function () {
         //adds click listener to start constructing polyline and adding to points
         poly = new google.maps.Polyline({
             //red line
-            strokeColor: '#FF0000',
+            strokeColor: '#469FD3',
             strokeOpacity: 1.0,
             strokeWeight: 3
         });
@@ -93,6 +94,10 @@ app.factory('MapFactory', function () {
       points.push(event.latLng);
       console.log(' adding latlng', event.latLng)
       // console.log(poly)
+    }
+
+    function clearMap(){
+        // clear all lines from map
     }
 
     // 
@@ -165,6 +170,8 @@ function plotElevation(elevations, status) {
         plotElevation: plotElevation,
         clearClickListeners: clearClickListeners,
         points: points,
+        areas: areas,
+        trails: trails,
     };
 
 });

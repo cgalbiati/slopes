@@ -1,9 +1,16 @@
+
+
 * {
   box-sizing: border-box;
 }
 
 body {
   background: #fdfdfd;
+}
+
+.navbarbuffer {
+  content: "";
+  height: 70px;
 }
 
 @mixin clearfix {
@@ -19,9 +26,12 @@ body {
   width: 1200px;
   margin: 0 auto;
 }
-
+@import "../../node_modules/bootswatch/cyborg/variables";
+@import "../../node_modules/bootswatch/cyborg/bootstrap";
+@import "../../node_modules/bootswatch/cyborg/bootswatch";
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';
 @import 'tutorial/main';
 @import 'login/main';
+

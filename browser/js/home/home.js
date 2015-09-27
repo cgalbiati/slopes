@@ -23,14 +23,9 @@ app.config(function ($stateProvider) {
 
 app.controller('HomeCtrl', function ($scope, $state, $rootScope, MapFactory, AreaFactory, TrailFactory, skiAreas, trails){
     $scope.skiAreas = skiAreas;
-
+    $scope.trails = trails;
     
     
-    $scope.trails = trails
-    $scope.move = function(area){
-        $rootScope.currentVars.area = area;
-        MapFactory.move(area);
-    }
     
     var gpsStart = new google.maps.LatLng(39.88,-105.78);
 

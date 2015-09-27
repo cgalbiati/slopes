@@ -3,20 +3,56 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
     return {
         restrict: 'E',
         scope: {},
+        // controller: "HomeCtrl",
         templateUrl: 'js/common/directives/navbar/navbar.html',
         link: function (scope) {
-            console.log($rootScope.showVars)
-            AreaFactory.find().then(function(areas){
-                scope.areas = areas;
-                console.log('areas', scope.areas)
-            });
 
-            // scope.items = [
-            //     { label: 'Home', state: 'home' },
-            //     { label: 'About', state: 'about' },
-            //     { label: 'Documentation', state: 'docs' },
-            //     { label: 'Members Only', state: 'membersOnly', auth: true }
-            // ];
+            // AreaFactory.find().then(function(areas){
+            //     scope.areas = areas;
+            // });
+
+
+            scope.selectedArea;
+
+            scope.move = function(area){
+                // $rootScope.currentVars.area = area;
+                MapFactory.move(area);
+            }
+            
+
+            scope.areas = [{    
+                    name: 'Winter Park',
+                    activity: 'Ski',
+                    lat: '39.88', 
+                    lng: '-105.78' 
+                },{    
+                    name: 'Eldora',
+                    activity: 'Ski',
+                    lat: '39.94', 
+                    lng: '-105.59' 
+                },{    
+                    name: 'Aspen Mountain',
+                    activity: 'Ski',
+                    lat: '39.17', 
+                    lng: '-106.82' 
+                },{    
+                    name: 'Crested Butte',
+                    activity: 'Ski',
+                    lat: '38.89', 
+                    lng: '-106.97' 
+                },{    
+                    name: 'Silverton',
+                    activity: 'Ski',
+                    lat: ' 37.89', 
+                    lng: '-107.67' 
+                },{    
+                    name: 'Killington',
+                    activity: 'Ski',
+                    lat: '43.63', 
+                    lng: '-72.82' 
+                },
+                
+            ];
 
             scope.addTrail = function(){
                 $rootScope.showVars.trailForm = !$rootScope.showVars.trailForm;
