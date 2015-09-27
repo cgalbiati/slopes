@@ -1,4 +1,4 @@
-app.factory('MapFactory', function ($http) {
+app.factory('MapFactory', function () {
     var map;
     var elevator;
     // var drawingManager;
@@ -12,6 +12,8 @@ app.factory('MapFactory', function ($http) {
         map = new google.maps.Map(document.getElementById('map-canvas'), opt);
         elevator = new google.maps.ElevationService;
         var infowindow = new google.maps.InfoWindow({map: map});
+        // google.load("visualization", "1", {packages:['columnchart']});
+
 
     }
 
@@ -23,6 +25,9 @@ app.factory('MapFactory', function ($http) {
         });
     }
 
+    function clearClickListeners () {
+        google.maps.event.clearListeners(map, 'click');
+    }
 
     ///find out how to remove a certain click listener
     // google.maps.event.clearListeners(map, 'bounds_changed');
@@ -59,7 +64,6 @@ app.factory('MapFactory', function ($http) {
     function move (loc) {
         //centers map on a new location ({lat: , Lng: })
         var newLoc = new google.maps.LatLng(loc.lat, loc.lng);
-        console.log(newLoc);
         map.panTo(newLoc);
     }
 
@@ -99,9 +103,43 @@ app.factory('MapFactory', function ($http) {
         'path': points,
         'samples': 256
       }, function(ele){
-        return cb(ele);
+        return cb(ele)
       });
     }
+
+    // Takes an array of ElevationResult objects, draws the path on the map
+// and plots the elevation profile on a Visualization API ColumnChart.
+function plotElevation(elevations, status) {
+    console.log('getting graph for ', elevations)
+    console.log('status', status)
+  var chartDiv = document.getElementById('elevation_chart');
+  if (status !== google.maps.ElevationStatus.OK) {
+    // Show the error code inside the chartDiv.
+    chartDiv.innerHTML = 'Cannot show elevation: request failed because ' +
+        status;
+    return;
+  }
+  // Create a new chart in the elevation_chart DIV.
+  var chart = new google.visualization.ColumnChart(chartDiv);
+
+  // Extract the data from which to populate the chart.
+  // Because the samples are equidistant, the 'Sample'
+  // column here does double duty as distance along the
+  // X axis.
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'Sample');
+  data.addColumn('number', 'Elevation');
+  for (var i = 0; i < elevations.length; i++) {
+    data.addRow(['', elevations[i].elevation]);
+  }
+
+  // Draw the chart using the data within its DIV.
+  chart.draw(data, {
+    height: 150,
+    legend: 'none',
+    titleY: 'Elevation (m)'
+  });
+}
     
       // var pathOpt = {
       //   path: points,
@@ -124,6 +162,9 @@ app.factory('MapFactory', function ($http) {
         // setUpDrawing: setUpDrawing,
         getElevPath: getElevPath,
         seePointElevation : seePointElevation,
+        plotElevation: plotElevation,
+        clearClickListeners: clearClickListeners,
+        points: points,
     };
 
 });

@@ -1,17 +1,27 @@
-app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) {
+app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, MapFactory, AreaFactory) {
 
     return {
         restrict: 'E',
         scope: {},
         templateUrl: 'js/common/directives/navbar/navbar.html',
         link: function (scope) {
+            console.log($rootScope.showVars)
+            AreaFactory.find().then(function(areas){
+                scope.areas = areas;
+                console.log('areas', scope.areas)
+            });
 
-            scope.items = [
-                { label: 'Home', state: 'home' },
-                { label: 'About', state: 'about' },
-                { label: 'Documentation', state: 'docs' },
-                { label: 'Members Only', state: 'membersOnly', auth: true }
-            ];
+            // scope.items = [
+            //     { label: 'Home', state: 'home' },
+            //     { label: 'About', state: 'about' },
+            //     { label: 'Documentation', state: 'docs' },
+            //     { label: 'Members Only', state: 'membersOnly', auth: true }
+            // ];
+
+            scope.addTrail = function(){
+                $rootScope.showVars.trailForm = !$rootScope.showVars.trailForm;
+                MapFactory.startDrawing();
+            }
 
             scope.user = null;
 

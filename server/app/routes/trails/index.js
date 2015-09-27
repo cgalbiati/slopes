@@ -45,7 +45,7 @@ router.post('/', function(req, res, next) {
     // need to verify users is logged in - in order to add a product to their page
     // if user is admin, should be able to create product on anyones pag
     var trailObj = req.body;
-    trailObj.user = req.user._id;
+    // trailObj.user = req.user._id;
     Trail.create(trailObj)
     .then(function(results) {
         res.json(results);

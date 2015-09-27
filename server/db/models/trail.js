@@ -7,9 +7,10 @@ var schema = new mongoose.Schema({
     name: {
     	type: String
     },
-    path: {
-        type: String
-    },
+    path: [{
+    	H: Number,
+    	L: Number
+    }],
 	user: {
 		type: ObjectId, 
 		ref:"User",
@@ -22,6 +23,14 @@ var schema = new mongoose.Schema({
 		type: ObjectId, 
 		ref:"Area",
 	},
+	elevObj: [{
+		elevation: Number,
+		location: {
+			H: Number,
+			L: Number
+		},
+		resolution: Number,
+	}],
 
 });
 

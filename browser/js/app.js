@@ -138,6 +138,21 @@ app.config(function(DSProvider, $urlRouterProvider, $locationProvider) {
       });
 
   });
-  app.run(function(UserFactory, LocationFactory, StateFactory) {
-      LocationFactory.findAll();
+  app.run(function(UserFactory, LocationFactory, StateFactory, $rootScope) {
+      $rootScope.showVars = {
+        trailForm: false,
+        graph: false,
+
+      };
+      $rootScope.mapData = {
+        points: [],
+        elevObj: {},
+        currentArea: null
+    }
+      $rootScope.currentVars = {
+        area: null,
+        trail: null,
+        selectedTrails: [],
+      }
+      StateFactory.findAll();
   });
