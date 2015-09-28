@@ -17,6 +17,8 @@
     <script src="/js-data-angular/dist/js-data-angular.js"></script>
     <script src="/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="/socket.io-client/socket.io.js"></script>
+     <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.js"></script>
      
 
     <script type="text/javascript"
@@ -35,11 +37,12 @@
 
     <navbar showVars='showVars'></navbar>
     <div class='navbarbuffer'></div>
+    <div ng-show='showVars.trailList' id="main" ui-view></div>
     <trail-form ng-show='showVars.trailForm' showVars='$rootScope.showVars'></trail-form>
-    <div class=' row clearfix fullscreen'>
-     <div class='fullscreen' id='map-canvas'></div>
+    <div class='row clearfix fullscreen'>
+     <div class='map-div' <div id='map-canvas'></div>
+     
+     <div id="elevation_chart"></div>
      </div>
-     <div id="elevation_chart" style="width: 900px; height: 500px;"></div>
-    <div id="main" ui-view></div>
 </body>
 </html>

@@ -11,14 +11,21 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
             //     scope.areas = areas;
             // });
 
-
+            scope.compareTrails = function(){
+                console.log($rootScope.trailList);
+                $rootScope.showVars.trailList = !$rootScope.showVars.trailList;
+            }
             scope.selectedArea;
 
             scope.move = function(area){
+                console.log('going to', area.name)
                 // $rootScope.currentVars.area = area;
                 MapFactory.move(area);
             }
             
+            scope.setSelected = function(area){
+                scope.selectedArea = area;
+            }
 
             scope.areas = [{    
                     name: 'Winter Park',
