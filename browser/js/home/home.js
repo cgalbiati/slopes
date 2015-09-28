@@ -5,11 +5,9 @@ app.config(function ($stateProvider) {
         controller: "HomeCtrl",
         resolve: {
         	skiAreas: function (AreaFactory){
-                console.log('looking for ski areas');
         		return AreaFactory.findAll();
         	},
             trails: function (TrailFactory){
-                console.log('looking for trails');
                 return TrailFactory.findAll();
             },
             // activities: function (ActivityFactory){
@@ -27,14 +25,14 @@ app.controller('HomeCtrl', function ($scope, $state, $rootScope, MapFactory, Are
 
 
 
-    $scope.selectedTrails = [];
+    // $scope.selectedTrails = [];
 
     $scope.addToCompare = function(trail){
         var newPath = [];
         trail.path.forEach(function(pathObj){
             newPath.push({lat: pathObj.H, lng:pathObj.L});
         })
-        $scope.selectedTrails.push(trail);
+        $rootScope.currentVars.selectedTrails.push(trail);
         var pathOpt = {
             path: newPath,
             geodesic: true,

@@ -58,7 +58,6 @@ app.factory('MapFactory', function () {
 
     function makePolyline (opt) {
         //draws a polyline on the map given an options obj
-        console.log('making poly', opt.path);
         var path =new google.maps.Polyline(opt);
         path.setMap(map);
     }
@@ -93,7 +92,6 @@ app.factory('MapFactory', function () {
       // and it will automatically appear.
       path.push(event.latLng);
       points.push(event.latLng);
-      console.log(' adding latlng', event.latLng)
       // console.log(poly)
     }
 
@@ -104,7 +102,6 @@ app.factory('MapFactory', function () {
     // 
 
     function getElevPath(cb){
-    console.log('getting elev path for ', points)
       elevator.getElevationAlongPath({
         'path': points,
         'samples': 256
@@ -118,7 +115,6 @@ app.factory('MapFactory', function () {
     function drawChart(elev, name) {
 
         makeDataArray(elev, name);
-        console.log('data', chartData)   
         var data = google.visualization.arrayToDataTable(chartData);
 
         var options = {
@@ -149,8 +145,6 @@ app.factory('MapFactory', function () {
     // Takes an array of ElevationResult objects, draws the path on the map
     // and plots the elevation profile on a Visualization API ColumnChart.
     function plotElevation(elevations, status) {
-        console.log('getting graph for ', elevations)
-        console.log('status', status)
       var chartDiv = document.getElementById('elevation_chart');
       if (status !== google.maps.ElevationStatus.OK) {
         // Show the error code inside the chartDiv.

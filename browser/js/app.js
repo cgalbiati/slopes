@@ -138,7 +138,7 @@ app.config(function(DSProvider, $urlRouterProvider, $locationProvider) {
       });
 
   });
-  app.run(function(UserFactory, LocationFactory, StateFactory, $rootScope) {
+  app.run(function($rootScope) {
       $rootScope.showVars = {
         trailForm: false,
         graph: false,
@@ -151,8 +151,7 @@ app.config(function(DSProvider, $urlRouterProvider, $locationProvider) {
     }
       $rootScope.currentVars = {
         area: null,
-        trail: null,
+        trails: null,
         selectedTrails: [],
       }
-      StateFactory.findAll();
   });

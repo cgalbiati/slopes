@@ -3,7 +3,6 @@ app.directive('trailForm', function (TrailFactory, MapFactory, $rootScope) {
         restrict: 'E',
         templateUrl: 'js/common/directives/trail-form/trail-form.html',
         link: function(scope) {
-            console.log('mapdata', scope.mapData)
             scope.trail = {
                 name: null,
                 path: null,
@@ -34,9 +33,9 @@ app.directive('trailForm', function (TrailFactory, MapFactory, $rootScope) {
                     scope.trail.elevObj = elevObj;
                     return TrailFactory.create(scope.trail)
                     .then(function(trail){
-                        console.log(trail)
                         clearVars();
                         $rootScope.showVars.graph = true;
+                        $rootScope.currentVars.selectedTrails.push(trail);
                         return MapFactory.drawChart(trail.elevObj, trail.name);
                     });
                 });

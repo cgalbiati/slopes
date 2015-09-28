@@ -12,7 +12,6 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
             // });
 
             scope.compareTrails = function(){
-                console.log($rootScope.trailList);
                 $rootScope.showVars.trailList = !$rootScope.showVars.trailList;
             }
             scope.selectedArea;
