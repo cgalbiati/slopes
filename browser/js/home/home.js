@@ -25,6 +25,8 @@ app.controller('HomeCtrl', function ($scope, $state, $rootScope, MapFactory, Are
     $scope.skiAreas = skiAreas;
     $scope.trails = trails;
 
+
+
     $scope.selectedTrails = [];
 
     $scope.addToCompare = function(trail){
@@ -41,7 +43,7 @@ app.controller('HomeCtrl', function ($scope, $state, $rootScope, MapFactory, Are
             strokeWeight: 1,
         }   
         MapFactory.makePolyline(pathOpt);
-        MapFactory.plotElevation(trail.elevObj, 'OK')
+        MapFactory.drawChart(trail.elevObj, trail.name)
     }
     
     var gpsStart = new google.maps.LatLng(39.88,-105.78);

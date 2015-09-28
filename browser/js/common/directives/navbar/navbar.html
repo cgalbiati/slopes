@@ -8,7 +8,7 @@
                 <div class="btn-group dropdown" dropdown dropdown-append-to-body>
                     <a type="button" id='toggle-areas' class=" dropdown-toggle search-param-toggle" dropdown-toggle>Go to... {{selectedArea.name}}<span class="caret"></span></a>
                     <ul class="dropdown-menu search-item-dropdown" role="menu">
-                        <li ng-repeat="area in areas track by $index" class="search-item" ng-click="setSelected(area)">{{area.name}}</li>
+                        <li ng-repeat="area in areas track by $index" id='skiAreaSearch' class="search-item" ng-click="setSelected(area)">{{area.name}}</li>
                     </ul>
                 </div>
                 <a ng-click='move(selectedArea)'  id="search-btn"> <airplane></airplane></a>

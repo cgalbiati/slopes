@@ -37,7 +37,7 @@ app.directive('trailForm', function (TrailFactory, MapFactory, $rootScope) {
                         console.log(trail)
                         clearVars();
                         $rootScope.showVars.graph = true;
-                        return MapFactory.plotElevation(trail.elevObj, 'OK');
+                        return MapFactory.drawChart(trail.elevObj, trail.name);
                     });
                 });
                 
