@@ -8,32 +8,6 @@ app.factory('MapFactory', function () {
     var trails = [];
     var chartData = [['Distance']];
 
-    function drawChart(elev, name) {
-
-    makeDataArray(elev, name);
-    console.log('data', chartData)  
-
-  //   var data = new google.visualization.DataTable();
-  // data.addColumn('string', 'Sample');
-  // data.addColumn('number', 'Elevation');
-  // for (var i = 0; i < elev.length; i++) {
-  //   data.addRow(['', Math.floor(Number(elev[i].elevation)*3.281)]);
-  // }  
-    var data = google.visualization.arrayToDataTable(chartData);
-
-    var options = {
-      title: '',
-      backgroundColor: 'none',
-      width:'100%',
-      legend: {position: 'none'},
-      vAxis: {title: 'Elevation (ft)',  titleTextStyle: {color: 'grey'}},
-      hAxis: {title: '',  titleTextStyle: {color: 'grey'}}
-    };
-
-    var chart = new google.visualization.AreaChart(document.getElementById('elevation_chart'));
-    chart.draw(data, options);
-  }
-
 
     function initMap(opt) {
 
@@ -139,105 +113,73 @@ app.factory('MapFactory', function () {
       });
     }
 
-    // Takes an array of ElevationResult objects, draws the path on the map
-// and plots the elevation profile on a Visualization API ColumnChart.
-function plotElevation(elevations, status) {
-    console.log('getting graph for ', elevations)
-    console.log('status', status)
-  var chartDiv = document.getElementById('elevation_chart');
-  if (status !== google.maps.ElevationStatus.OK) {
-    // Show the error code inside the chartDiv.
-    chartDiv.innerHTML = 'Cannot show elevation: request failed because ' +
-        status;
-    return;
-  }
-  // Create a new chart in the elevation_chart DIV.
-  var chart = new google.visualization.ColumnChart(chartDiv);
 
-  // Extract the data from which to populate the chart.
-  // Because the samples are equidistant, the 'Sample'
-  // column here does double duty as distance along the
-  // X axis.
-  var data = new google.visualization.DataTable();
-  data.addColumn('string', 'Sample');
-  data.addColumn('number', 'Elevation');
-  for (var i = 0; i < elevations.length; i++) {
-    data.addRow(['', Math.floor(Number(elevations[i].elevation)*3.281)]);
-  }
+    //makes area graph of elevation, can take ultiple trails
+    function drawChart(elev, name) {
 
-  // Draw the chart using the data within its DIV.
-  chart.draw(data, {
-    height: 150,
-    legend: 'none',
-    titleY: 'Elevation (ft)'
-  });
-}
+        makeDataArray(elev, name);
+        console.log('data', chartData)   
+        var data = google.visualization.arrayToDataTable(chartData);
 
-function makeDataArray(elevations, name){
-    chartData[0].push(name);
-    for(var i=0; i<elevations.length; i++){
-        if(!chartData[i+1]){
-            chartData.push(['', Math.floor(Number(elevations[i].elevation)*3.281)]);
-        } else {
-            chartData[i+1].push(Math.floor(Number(elevations[i].elevation)*3.281));
+        var options = {
+          title: '',
+          backgroundColor: 'none',
+          width:'100%',
+          legend: {position: 'none'},
+          vAxis: {title: 'Elevation (ft)',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: '',  titleTextStyle: {color: 'grey'}}
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('elevation_chart'));
+        chart.draw(data, options);
+    }
+
+    //takes an elevation obj and adds its pts to the data array to make the area graph
+    function makeDataArray(elevations, name){
+        chartData[0].push(name);
+        for(var i=0; i<elevations.length; i++){
+            if(!chartData[i+1]){
+                chartData.push(['', Math.floor(Number(elevations[i].elevation)*3.281)]);
+            } else {
+                chartData[i+1].push(Math.floor(Number(elevations[i].elevation)*3.281));
+            }
         }
     }
-}
 
-// Takes an array of ElevationResult objects, draws the path on the map
-// and plots the elevation profile on a Visualization API ColumnChart.
-function makeAreaGraph(elevations) {
-    console.log('getting graph for ', elevations)
-    makeDataArray(elevations);
+    // Takes an array of ElevationResult objects, draws the path on the map
+    // and plots the elevation profile on a Visualization API ColumnChart.
+    function plotElevation(elevations, status) {
+        console.log('getting graph for ', elevations)
+        console.log('status', status)
+      var chartDiv = document.getElementById('elevation_chart');
+      if (status !== google.maps.ElevationStatus.OK) {
+        // Show the error code inside the chartDiv.
+        chartDiv.innerHTML = 'Cannot show elevation: request failed because ' +
+            status;
+        return;
+      }
+      // Create a new chart in the elevation_chart DIV.
+      var chart = new google.visualization.ColumnChart(chartDiv);
 
-    var data = google.visualization.arrayToDataTable(chartData);
+      // Extract the data from which to populate the chart.
+      // Because the samples are equidistant, the 'Sample'
+      // column here does double duty as distance along the
+      // X axis.
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Sample');
+      data.addColumn('number', 'Elevation');
+      for (var i = 0; i < elevations.length; i++) {
+        data.addRow(['', Math.floor(Number(elevations[i].elevation)*3.281)]);
+      }
 
-    var options = {
-      title: 'Elevation Profile',
-      hAxis: {title: ''},
-      vAxis: {title: 'Year', minValue: 0}
-    };
-    var chart = new google.visualization.AreaChart(document.getElementById('elevation_chart'));
-        chart.draw(data, options);
-};
+    // Draw the chart using the data within its DIV.
+      chart.draw(data, {
+        height: 150,
+        legend: 'none',
+        titleY: 'Elevation (ft)'
+      });
+    }
 
-  // var chartDiv = document.getElementById('elevation_chart');
-  // if (status !== google.maps.ElevationStatus.OK) {
-  //   // Show the error code inside the chartDiv.
-  //   chartDiv.innerHTML = 'Cannot show elevation: request failed because ' +
-  //       status;
-  //   return;
-  // }
-  // // Create a new chart in the elevation_chart DIV.
-  // var chart = new google.visualization.ColumnChart(chartDiv);
-
-  // // Extract the data from which to populate the chart.
-  // // Because the samples are equidistant, the 'Sample'
-  // // column here does double duty as distance along the
-  // // X axis.
-  // var data = new google.visualization.DataTable();
-  // data.addColumn('string', 'Sample');
-  // data.addColumn('number', 'Elevation');
-  // for (var i = 0; i < elevations.length; i++) {
-  //   data.addRow(['', Math.floor(Number(elevations[i].elevation)*3.281)]);
-  // }
-
-  // // Draw the chart using the data within its DIV.
-  // chart.draw(data, {
-  //   height: 150,
-  //   legend: 'none',
-  //   titleY: 'Elevation (ft)'
-  // });
-    
-      // var pathOpt = {
-      //   path: points,
-      //   geodesic: true,
-      //   strokeColor: '#FF0000',
-      //   strokeOpacity: 1.0,
-      //   strokeWeight: 1.5,
-      //   draggable: true,
-      // }
-      // makePolyline(pathOpt)
 
 
    
