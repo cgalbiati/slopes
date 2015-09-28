@@ -197,7 +197,6 @@ app.factory('MapFactory', function () {
         points: points,
         areas: areas,
         trails: trails,
-        makeAreaGraph: makeAreaGraph,
         drawChart: drawChart
     };
 
